@@ -1,0 +1,16 @@
+**/.env
+**/.env.*
+!**/.env.example
+!.env.deploy.example
+**/.venv/
+**/node_modules/
+**/.npm-cache/
+**/__pycache__/
+**/.pytest_cache/
+**/.test-tmp*/
+/backend/storage/
+**/dist/
+dist/
+.docker-local/
+*.log
+*.pdf

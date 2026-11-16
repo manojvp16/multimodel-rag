@@ -1,0 +1,22 @@
+# Local production-container check. Render uses render.yaml instead.
+services:
+  omnirag:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env.deploy
+    environment:
+      PORT: "8000"
+      DEBUG: "false"
+      QDRANT_LOCAL: "true"
+      STORAGE_DIR: /app/backend/storage
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - omnirag_data:/app/backend/storage
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+volumes:
+  omnirag_data:

@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: omnirag
+    runtime: docker
+    plan: starter
+    numInstances: 1
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    disk:
+      name: omnirag-storage
+      mountPath: /app/backend/storage
+      sizeGB: 1
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_CHAT_MODEL
+        sync: false
+      - key: AUTH_USERNAME
+        sync: false
+      - key: AUTH_PASSWORD
+        sync: false
+      - key: GEMINI_EMBEDDING_MODEL
+        value: gemini-embedding-2
+      - key: EMBEDDING_DIMENSIONS
+        value: "768"
+      - key: QDRANT_LOCAL
+        value: "true"
+      - key: DEBUG
+        value: "false"
+      - key: STORAGE_DIR
+        value: /app/backend/storage
